@@ -25,6 +25,7 @@ export default {
     data() {
         return {
             houses: [],
+            newHouses: [],
             selected: [],
             rounds: [],
             roundsAverage: 0,
@@ -93,7 +94,7 @@ export default {
         },
         // Denna gör att allting i programmet körs automatiskt, går även att ställa hastigheten så det går snabbare eller långsammare.
         startGameAuto() {
-            this.interval = setInterval(() => this.startGame(), 100);
+            this.interval = setInterval(() => this.startGame(), 1);
             this.startNewGame = false;
         },
         // Här är metoden som tar fram den första zombien. 
@@ -103,28 +104,9 @@ export default {
             this.startFirstGame = false,
             this.isDisable();
 
-            // Här nedan är möjligen en av de fulaste fullösningar som finns (kommer en till). Den här är till för att efter att första rundan är avslutad 
-            // och ett hus har blivit smittad, så går programmet vidare till continueGame där vi får två zombies.
-            if (this.selected.includes(1) || this.selected.includes(2) || this.selected.includes(3) || this.selected.includes(4) || this.selected.includes(5)
-            || this.selected.includes(6) || this.selected.includes(7) || this.selected.includes(8) || this.selected.includes(9) || this.selected.includes(10)
-            || this.selected.includes(11) || this.selected.includes(12) || this.selected.includes(13) || this.selected.includes(14) || this.selected.includes(15)
-            || this.selected.includes(16) || this.selected.includes(17) || this.selected.includes(18) || this.selected.includes(19) || this.selected.includes(20)
-            || this.selected.includes(21) || this.selected.includes(22) || this.selected.includes(23) || this.selected.includes(24) || this.selected.includes(25)
-            || this.selected.includes(26) || this.selected.includes(27) || this.selected.includes(28) || this.selected.includes(29) || this.selected.includes(30)
-            || this.selected.includes(31) || this.selected.includes(32) || this.selected.includes(33) || this.selected.includes(34) || this.selected.includes(35)
-            || this.selected.includes(36) || this.selected.includes(37) || this.selected.includes(38) || this.selected.includes(39) || this.selected.includes(40)
-            || this.selected.includes(41) || this.selected.includes(42) || this.selected.includes(43) || this.selected.includes(44) || this.selected.includes(45)
-            || this.selected.includes(46) || this.selected.includes(47) || this.selected.includes(48) || this.selected.includes(49) || this.selected.includes(50)
-            || this.selected.includes(51) || this.selected.includes(52) || this.selected.includes(53) || this.selected.includes(54) || this.selected.includes(55)
-            || this.selected.includes(56) || this.selected.includes(57) || this.selected.includes(58) || this.selected.includes(59) || this.selected.includes(60)
-            || this.selected.includes(61) || this.selected.includes(62) || this.selected.includes(63) || this.selected.includes(64) || this.selected.includes(65)
-            || this.selected.includes(66) || this.selected.includes(67) || this.selected.includes(68) || this.selected.includes(69) || this.selected.includes(70)
-            || this.selected.includes(71) || this.selected.includes(72) || this.selected.includes(73) || this.selected.includes(74) || this.selected.includes(75)
-            || this.selected.includes(76) || this.selected.includes(77) || this.selected.includes(78) || this.selected.includes(79) || this.selected.includes(80)
-            || this.selected.includes(81) || this.selected.includes(82) || this.selected.includes(83) || this.selected.includes(84) || this.selected.includes(85)
-            || this.selected.includes(86) || this.selected.includes(87) || this.selected.includes(88) || this.selected.includes(89) || this.selected.includes(90)
-            || this.selected.includes(91) || this.selected.includes(92) || this.selected.includes(93) || this.selected.includes(94) || this.selected.includes(95)
-            || this.selected.includes(96) || this.selected.includes(97) || this.selected.includes(98) || this.selected.includes(99) || this.selected.includes(100)) {
+            // Den här är till för att efter att första rundan är avslutad och ett hus har blivit smittad, så går programmet vidare till continueGame
+            // där vi får två zombies.
+            if (this.selected.length >= 1) {
                 this.continueGame();
             } else {
         
@@ -135,30 +117,15 @@ export default {
 
             }
 
-            // Här kommer en till riktig fullösning (fungerar dock). Här kollar programmet igenom om alla värden 1-100 finns med i selected.
-            // Om alla värden finns med så går den in i gameOver metoden, annars fortsätter programmet.
-            if (this.selected.includes(1) && this.selected.includes(2) && this.selected.includes(3) && this.selected.includes(4) && this.selected.includes(5)
-            && this.selected.includes(6) && this.selected.includes(7) && this.selected.includes(8) && this.selected.includes(9) && this.selected.includes(10)
-            && this.selected.includes(11) && this.selected.includes(12) && this.selected.includes(13) && this.selected.includes(14) && this.selected.includes(15)
-            && this.selected.includes(16) && this.selected.includes(17) && this.selected.includes(18) && this.selected.includes(19) && this.selected.includes(20)
-            && this.selected.includes(21) && this.selected.includes(22) && this.selected.includes(23) && this.selected.includes(24) && this.selected.includes(25)
-            && this.selected.includes(26) && this.selected.includes(27) && this.selected.includes(28) && this.selected.includes(29) && this.selected.includes(30)
-            && this.selected.includes(31) && this.selected.includes(32) && this.selected.includes(33) && this.selected.includes(34) && this.selected.includes(35)
-            && this.selected.includes(36) && this.selected.includes(37) && this.selected.includes(38) && this.selected.includes(39) && this.selected.includes(40)
-            && this.selected.includes(41) && this.selected.includes(42) && this.selected.includes(43) && this.selected.includes(44) && this.selected.includes(45)
-            && this.selected.includes(46) && this.selected.includes(47) && this.selected.includes(48) && this.selected.includes(49) && this.selected.includes(50)
-            && this.selected.includes(51) && this.selected.includes(52) && this.selected.includes(53) && this.selected.includes(54) && this.selected.includes(55)
-            && this.selected.includes(56) && this.selected.includes(57) && this.selected.includes(58) && this.selected.includes(59) && this.selected.includes(60)
-            && this.selected.includes(61) && this.selected.includes(62) && this.selected.includes(63) && this.selected.includes(64) && this.selected.includes(65)
-            && this.selected.includes(66) && this.selected.includes(67) && this.selected.includes(68) && this.selected.includes(69) && this.selected.includes(70)
-            && this.selected.includes(71) && this.selected.includes(72) && this.selected.includes(73) && this.selected.includes(74) && this.selected.includes(75)
-            && this.selected.includes(76) && this.selected.includes(77) && this.selected.includes(78) && this.selected.includes(79) && this.selected.includes(80)
-            && this.selected.includes(81) && this.selected.includes(82) && this.selected.includes(83) && this.selected.includes(84) && this.selected.includes(85)
-            && this.selected.includes(86) && this.selected.includes(87) && this.selected.includes(88) && this.selected.includes(89) && this.selected.includes(90)
-            && this.selected.includes(91) && this.selected.includes(92) && this.selected.includes(93) && this.selected.includes(94) && this.selected.includes(95)
-            && this.selected.includes(96) && this.selected.includes(97) && this.selected.includes(98) && this.selected.includes(99) && this.selected.includes(100)) {
-                this.gameOver();
-            }
+            // Här kollar jag om newHouses arrayen är tom, om det stämmer går jag in i loopen. Inne i loopen så gör jag om tidigare houses arrayen från en object
+            // array till en array utan object. Detta så jag kan jämföra senare om newHouses har alla nummber som selected.
+            if (!this.newHouses.length) {
+
+                    for (let i = 0; this.houses[i].id < this.houses.length; i++) {
+    
+                        this.newHouses.push(this.houses[i].id);
+                    }
+                } else return 
 
         },
         // Här produceras det två nya zombies varje runda tills att inga människor finns kvar i husen.
@@ -166,7 +133,14 @@ export default {
             let o = Math.floor(Math.random() * this.houses.length + 1);
             let m = Math.floor(Math.random() * this.houses.length + 1);
             this.selected.push(o, m);
-            // console.log(this.selected);
+
+            // Kollar om alla nummer som finns i newHouses finns i selected. Jag var tvungen att lägga till includes(100) manuellt, då jag i tidigare steg inte lyckades
+            // få newHouses till samma lenght som houses, i detta fall blir det endast 1-99 i newHouses men 100 ska även vara med. Men med hjälp av includes(100)
+            // så blir det korrekt, då selected fortfarande tar nummer 100.
+            // Om alla värden finns med så går den in i gameOver metoden, annars fortsätter programmet.
+            if (this.newHouses.every(v => this.selected.includes(v)) && this.selected.includes(100)) {
+                this.gameOver();
+            }
         },
     }
 }
